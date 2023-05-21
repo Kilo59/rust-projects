@@ -3,6 +3,7 @@ fn main() {
     structs1();
     structs2();
     structs3();
+    structs4();
 }
 
 fn simple() {
@@ -78,4 +79,38 @@ fn structs3() {
         "3: The area of the rectangle is {} square pixels.",
         rect.area()
     );
+}
+
+fn structs4() {
+    struct Rectangle {
+        width: u32,
+        height: u32,
+    }
+
+    impl Rectangle {
+        fn area(&self) -> u32 {
+            self.width * self.height
+        }
+        fn can_hold(&self, other: &Rectangle) -> bool {
+            self.width > other.width && self.height > other.height
+        }
+        fn square(size: u32) -> Self {
+            Self {
+                width: size,
+                height: size,
+            }
+        }
+    }
+
+    let rect = Rectangle {
+        width: 30,
+        height: 50,
+    };
+    let sqr: Rectangle = Rectangle::square(15);
+
+    println!("4: The area of the square is {} square pixels.", sqr.area());
+    println!(
+        "4: The rectangle can hold the square? {}",
+        rect.can_hold(&sqr)
+    )
 }
