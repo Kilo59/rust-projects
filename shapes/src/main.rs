@@ -15,6 +15,7 @@ fn main() {
     match2();
     match_w_option();
     match_catch_all();
+    if_let();
 }
 
 fn simple() {
@@ -326,5 +327,50 @@ fn match_catch_all() {
         7 => remove_fancy_hat(),
         // catch all but with a no-op
         _ => (),
+    }
+}
+
+fn if_let() {
+    let config_max = Some(3u8);
+    match config_max {
+        Some(max) => println!("The maximum is configured to be {}", max),
+        _ => (),
+    }
+
+    let config_max2 = Some(3u8);
+    if let Some(max) = config_max2 {
+        println!("The maximum is configured to be {}", max);
+    }
+
+    #[derive(Debug)] // for inspecting state
+    enum UsState {
+        Alabama,
+        Alaska,
+        Arizona,
+    }
+
+    enum Coin {
+        Penny,
+        Nickel,
+        Dime,
+        Quarter(UsState),
+    }
+
+    let mut count1 = 0;
+    match coin {
+        Coin::Quarter(state) => println!("State quarter from {:?}!", state),
+        _ => {
+            println!("Not a state quarter!");
+            count1 += 1;
+        }
+    }
+
+    // same as above but with if let
+    let mut count2 = 0;
+    if let Coin::Quarter(state) = coin {
+        println!("State quarter from {:?}!", state);
+    } else {
+        println!("Not a state quarter!");
+        count2 += 1;
     }
 }
