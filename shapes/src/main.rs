@@ -8,6 +8,8 @@ fn main() {
     enum_vs_structs1();
     enum_vs_structs2();
     enum_vs_structs3();
+
+    enums1();
 }
 
 fn simple() {
@@ -167,4 +169,25 @@ fn enum_vs_structs3() {
 
     let home = IpAddr::V4(127, 0, 0, 1);
     let loopback = IpAddr::V6(String::from("::1"));
+}
+
+fn enums1() {
+    #[derive(Debug)]
+    enum Message {
+        Quite,
+        Move { x: i32, y: i32 },
+        Write(String),
+        ChangeColor(i32, i32, i32),
+    }
+
+    impl Message {
+        fn call(&self) {
+            println!("{:?}", self)
+        }
+    }
+
+    let m1 = Message::Write(String::from("hello"));
+    let m2 = Message::Move { x: 5, y: 7 };
+    m1.call();
+    println!("{:?}", m2);
 }
