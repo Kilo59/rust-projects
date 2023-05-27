@@ -11,6 +11,7 @@ fn main() {
 
     enums1();
     option1();
+    match1();
 }
 
 fn simple() {
@@ -203,4 +204,25 @@ fn option1() {
     let some_char = Some('e');
 
     let absent_number: Option<i32> = None;
+}
+
+fn match1() {
+    enum Coin {
+        Penny,
+        Nickel,
+        Dime,
+        Quarter,
+    }
+
+    fn value_in_cents(coin: Coin) -> u8 {
+        match coin {
+            Coin::Penny => 1,
+            Coin::Nickel => 5,
+            Coin::Dime => 10,
+            Coin::Quarter => 25,
+        }
+    }
+
+    let value = value_in_cents(Coin::Dime);
+    println!("Cents: {}", value);
 }
