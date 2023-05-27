@@ -10,6 +10,7 @@ fn main() {
     enum_vs_structs3();
 
     enums1();
+    option1();
 }
 
 fn simple() {
@@ -190,4 +191,16 @@ fn enums1() {
     let m2 = Message::Move { x: 5, y: 7 };
     m1.call();
     println!("{:?}", m2);
+}
+
+fn option1() {
+    // enum Option<T> {
+    //     None,
+    //     Some(T),
+    // }
+
+    let some_number = Some(5);
+    let some_char = Some('e');
+
+    let absent_number: Option<i32> = None;
 }
