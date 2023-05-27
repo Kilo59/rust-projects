@@ -14,6 +14,7 @@ fn main() {
     match1();
     match2();
     match_w_option();
+    match_catch_all();
 }
 
 fn simple() {
@@ -291,4 +292,35 @@ fn match_w_option() {
     let five = Some(5);
     let six = plus_one(five);
     let none = plus_one(None);
+}
+
+fn match_catch_all() {
+    let dice_roll = 9;
+    match dice_roll {
+        3 => add_fancy_hat(),
+        7 => remove_fancy_hat(),
+        // this is the catch all
+        other => move_player(other),
+    }
+
+    fn add_fancy_hat() {}
+    fn remove_fancy_hat() {}
+    fn move_player(num_spaces: u8) {}
+    fn reroll() {}
+
+    let dice_roll2 = 5;
+    match dice_roll2 {
+        3 => add_fancy_hat(),
+        7 => remove_fancy_hat(),
+        // catch all when we don't care about the value
+        _ => reroll(),
+    }
+
+    let dice_roll3 = 8;
+    match dice_roll3 {
+        3 => add_fancy_hat(),
+        7 => remove_fancy_hat(),
+        // catch all but with a no-op
+        _ => (),
+    }
 }
