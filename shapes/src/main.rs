@@ -255,7 +255,11 @@ fn match2() {
     enum UsState {
         Alabama,
         Alaska,
+        Arizona,
         Arkansas,
+        California,
+        Colorado,
+        Connecticut,
     }
 
     enum Coin {
