@@ -225,4 +225,24 @@ fn match1() {
 
     let value = value_in_cents(Coin::Dime);
     println!("Cents: {}", value);
+
+    fn value_in_cents_verbose(coin: Coin) -> u8 {
+        match coin {
+            Coin::Penny => {
+                println!("Lucky penny!");
+                1
+            }
+            Coin::Nickel => 5,
+            Coin::Dime => 10,
+            Coin::Quarter => {
+                println!("3 more for a Dollar!");
+                25
+            }
+        }
+    }
+
+    value_in_cents_verbose(Coin::Penny);
+    value_in_cents_verbose(Coin::Nickel);
+    value_in_cents_verbose(Coin::Dime);
+    value_in_cents_verbose(Coin::Quarter);
 }
